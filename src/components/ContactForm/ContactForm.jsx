@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import { ContactsForm, AddButton } from './ContactForm.styled';
 
 class ContactForm extends Component {
   state = {
@@ -36,7 +37,7 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <ContactsForm onSubmit={this.handleSubmit}>
         <label htmlFor={this.nameInputId}>Name</label>
         <input
           type="text"
@@ -61,8 +62,8 @@ class ContactForm extends Component {
           required
         />
 
-        <button type="submit">Add contact</button>
-      </form>
+        <AddButton type="submit">Add contact</AddButton>
+      </ContactsForm>
     );
   }
 }

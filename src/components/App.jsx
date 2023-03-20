@@ -1,8 +1,10 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { Section } from './Section/Section';
 import ContactForm from './ContactForm/ContactForm';
 import { ContactsList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
+import { AppSection } from './App.styled';
 
 class App extends Component {
   state = {
@@ -65,16 +67,19 @@ class App extends Component {
     } = this;
 
     return (
-      <div>
-        <h2>Phonebook</h2>
-        <ContactForm onSubmit={formSubmithandler} />
-        <h2>Contacts</h2>
-        <Filter onChange={filterChange} />
-        <ContactsList
-          contactsList={getVisibleContacts()}
-          deleteContact={deleteContact}
-        />
-      </div>
+      <AppSection>
+        <Section title="Phonebook">
+          <ContactForm onSubmit={formSubmithandler} />
+        </Section>
+
+        <Section title="Contacts">
+          <Filter onChange={filterChange} />
+          <ContactsList
+            contactsList={getVisibleContacts()}
+            deleteContact={deleteContact}
+          />
+        </Section>
+      </AppSection>
     );
   }
 }
