@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 
 class App extends Component {
@@ -12,7 +13,13 @@ class App extends Component {
   };
 
   formSubmithandler = data => {
-    console.log(data);
+    const id = nanoid(10);
+
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, { id, ...data }],
+    }));
+
+    // this.setState(prevState => prevState.contacts.push({ id, ...data }));
   };
 
   deleteContact = id => {
@@ -22,7 +29,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.contacts.id);
     return (
       <div>
         <ContactForm onSubmit={this.formSubmithandler}></ContactForm>
@@ -33,7 +39,6 @@ class App extends Component {
               <p>
                 {name}: {number}
               </p>
-
               <button onClick={() => this.deleteContact(id)}>Удалить</button>
             </li>
           ))}

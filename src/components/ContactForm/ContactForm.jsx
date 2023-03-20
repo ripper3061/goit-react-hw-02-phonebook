@@ -3,7 +3,6 @@ import { nanoid } from 'nanoid';
 
 class ContactForm extends Component {
   state = {
-    filter: '',
     name: '',
     number: '',
   };
@@ -21,6 +20,7 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
     this.props.onSubmit(this.state);
     this.resetContactForm();
   };
