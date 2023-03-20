@@ -14,6 +14,8 @@ class App extends Component {
     filter: '',
   };
 
+  filterInputId = nanoid();
+
   formSubmithandler = data => {
     const id = nanoid(10);
 
@@ -22,6 +24,12 @@ class App extends Component {
     }));
 
     // this.setState(prevState => prevState.contacts.push({ id, ...data }));
+  };
+
+  filterChange = e => {
+    const { value } = e.currentTarget;
+
+    this.setState({ filter: value });
   };
 
   deleteContact = id => {
@@ -37,6 +45,12 @@ class App extends Component {
         <ContactForm onSubmit={this.formSubmithandler} />
 
         <h2>Contacts</h2>
+        <label htmlFor={this.filterInputId}>Find contacts by name</label>
+        <input
+          type="text"
+          id={this.filterInputId}
+          onChange={this.filterChange}
+        />
         <ContactsList
           contactsList={this.state.contacts}
           deleteContact={this.deleteContact}
