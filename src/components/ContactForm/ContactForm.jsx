@@ -1,10 +1,14 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
+
+  nameInputId = nanoid();
+  numberInputId = nanoid();
 
   handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -27,10 +31,11 @@ class ContactForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="">Name </label>
+        <label htmlFor={this.nameInputId}>Name</label>
         <input
           type="text"
           name="name"
+          id={this.nameInputId}
           value={this.state.name}
           onChange={this.handleChange}
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -38,18 +43,17 @@ class ContactForm extends Component {
           required
         />
 
-        <label>
-          Number
-          <input
-            type="tel"
-            name="number"
-            value={this.state.number}
-            onChange={this.handleChange}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
+        <label htmlFor={this.numberInputId}>Number</label>
+        <input
+          type="tel"
+          name="number"
+          value={this.state.number}
+          id={this.numberInputId}
+          onChange={this.handleChange}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
 
         <button type="submit">Add contact</button>
       </form>
