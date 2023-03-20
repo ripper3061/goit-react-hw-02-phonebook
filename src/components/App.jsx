@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
+import { ContactsList } from './ContactList/ContactList';
 
 class App extends Component {
   state = {
@@ -10,6 +11,7 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
+    filter: '',
   };
 
   formSubmithandler = data => {
@@ -31,18 +33,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ContactForm onSubmit={this.formSubmithandler}></ContactForm>
+        <h2>Phonebook</h2>
+        <ContactForm onSubmit={this.formSubmithandler} />
 
-        <ul>
-          {this.state.contacts.map(({ id, name, number }) => (
-            <li key={id}>
-              <p>
-                {name}: {number}
-              </p>
-              <button onClick={() => this.deleteContact(id)}>Удалить</button>
-            </li>
-          ))}
-        </ul>
+        <h2>Contacts</h2>
+        <ContactsList
+          contactsList={this.state.contacts}
+          deleteContact={this.deleteContact}
+        />
       </div>
     );
   }
