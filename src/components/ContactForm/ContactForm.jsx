@@ -1,10 +1,15 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
+  };
+
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
   };
 
   nameInputId = nanoid();
