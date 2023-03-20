@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 
 class ContactForm extends Component {
   state = {
+    filter: '',
     name: '',
     number: '',
   };
