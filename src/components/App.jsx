@@ -73,7 +73,7 @@ class App extends Component {
         </Section>
 
         <Section title="Contacts">
-          <Filter onChange={filterChange} />
+          <Filter onChange={filterChange} value={this.state.filter} />
           <ContactsList
             contactsList={getVisibleContacts()}
             deleteContact={deleteContact}
